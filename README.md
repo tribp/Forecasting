@@ -29,6 +29,8 @@ Mini course on the forecasting ecosystem for Time Series
 ### 1.1 Arima 
 Predicting AirPassengers [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tribp/Forecasting/blob/main/notebooks/Arima_AirPassengers.ipynb)
 
+Predicting Electricity max daily load [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tribp/Forecasting/blob/main/notebooks/Arima_Elia_Daily_Max.ipynb)
+
 ## 2. Machine learning
 ### 2.1 XGBoost
 ### 2.2 LightGBM
