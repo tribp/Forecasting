@@ -37,11 +37,11 @@ This is the sum of the AR + MA part. The time series is stationary so no differe
 
 # Comparison of ARIMA, SARIMA and SARIMAX
 
-| Model      | Components                              | Seasonal Component | Exogenous Variables | Use Case                                      |
-|------------|-------------------------------------|---------|----------------------|-----------------------------------------------|
-| **ARIMA**  | ARIMA | No                   | No                   | Non-seasonal time series without external influences. |
-| **SARIMA** | ARIMA + Seasonality | Yes   | No                   | Time series with seasonal patterns.           |
-| **SARIMAX**| ARIMA + Seasonality + Exogenous Variables | Yes  | Yes                  | Time series with seasonal patterns and external factors.(eg: holidays, DayOfWeek, planned promotions etc) |
+| Model      | Seasonal Component | Exogenous Variables | Use Case                                      |
+|------------|---------|----------------------|-----------------------------------------------|
+| **ARIMA**  | No                   | No                   | Non-seasonal time series without external influences. |
+| **SARIMA** | Yes   | No                   | Time series with seasonal patterns.           |
+| **SARIMAX**| Yes  | Yes                  | Time series with seasonal patterns and external factors.(eg: holidays, DayOfWeek, planned promotions etc) |
 
 ### 2.2 ARIMA libraries
 
@@ -55,14 +55,14 @@ This is the sum of the AR + MA part. The time series is stationary so no differe
 | **pmdarima**    | - Easy to use with automated hyperparameter tuning. | - May not provide as detailed diagnostics as `statsmodels`. |
 |                 | - Provides auto_arima function for automatic model fitting. | - Can be slower than `statsmodels` for large datasets. |
 
-**Remark:** Notice tha although pmdarima is a wrapper around statsmodel, some functionality and syntax might slightly differ. We will be using mainly pmdarima because it offers auto_arima to automatically search for the optimal (p,d,q) combination and its ease of use.
+**Remark:** Notice that although pmdarima is a wrapper around statsmodels, some functionality and syntax might slightly differ. We will be using mainly pmdarima because it offers auto_arima to automatically search for the optimal (p,d,q) combination and its ease of use.
 
 ## 3. Stationarity
 
 **Definition:** A time series is **stationary** when all statistical parameters remain constant over time
 
 * a constant **mean**
-* a constant **variance**
+* a constant **variance** (= "heteroscedacity')
 * a constant **autoregression** structure
 * **no seasonality** = no periodic component
 
@@ -70,16 +70,80 @@ A more inuitive explaination is that time series that exibit this behaviour are 
 
 ### 3.1 How can we check this?
 
-* visualy: plot the time series and try to spot:
+**There are 3 Options:**
+
+1. visualy: plot the time series and try to spot:
     * a trend
     * a varying variance
 
     If so then the series is **NOT Stationary**
-* ADF-test: AUgmented Dicky-Fuller test
+
+    <img src='../images/stationarity_principle.png' alt='Stationarity principle' width="400px"/><BR/>
+
+2. Plot the histogram of the time series
+
+    If the histogram shows a normal distribution like the first one, then it is most likely stationary. If it has a more flat or uniform distribution like 2 and 3 then it is NOT stationary
+
+    <img src='../images/stationary_histograms.png' alt='Stationarity principle' width="400px"/><BR/>
+
+3. ADF-test: Augmented Dickey-Fuller test
+
+    The ADF test is a statistical test, that tests if the time series is **NON-stationary**. If the probability p is lower than 5% ( p < 0.05) then it is not "NOT-stationary", thus the time series is stationary.
+
+    **Simply put: p < 0.05 means stationary**
+
+    <img src='../images/adf_test.png' alt='ADF test' width="400px"/><BR/>
+    **Some examples:**<BR/>
+    <img src='../images/stationarity_examples.png' alt='Arima image' width="400px"/><BR/>
 
 ## 4 Some practical scenario's
 
 ### 4.1 AR proces
+
+# AR(1) Process Example: Estimating Gold Prices
+
+We will use an **Autoregressive (AR) process with 1 lag (AR(1))** to estimate the gold price based on past values.
+
+## Given Data
+The real-world gold prices for 10 days:
+
+`(4, 6, 6, 8, 7, 6, 4, 3, 3, 4)`
+
+We apply the **AR(1) formula**:
+
+$P_t$ = μ + φ * $P_(t-1)$ + $ε_t$
+
+
+where:
+- `P_t` is the **predicted** gold price at time `t`.
+- `μ = 1.625311` (Intercept).
+- `φ = 0.6608` (Coefficient for the previous day's price `P_(t-1)`).
+- `P_(t-1)` is the **actual** gold price from the previous day.
+- `ε_t` is the **error term** (assumed to be small and ignored for simplicity).
+
+## Step-by-Step Predictions Using AR(1)
+
+| Day | Real Price (P_t) | Predicted Price (P̂_t) |
+|----|---------------|----------------------------------|
+| 1  | **4**         | -                                |
+| 2  | **6**         | `1.625311 + 0.6608 * 4 = 4.2685` |
+| 3  | **6**         | `1.625311 + 0.6608 * 6 = 5.5901` |
+| 4  | **8**         | `1.625311 + 0.6608 * 6 = 5.5901` |
+| 5  | **7**         | `1.625311 + 0.6608 * 8 = 6.9117` |
+| 6  | **6**         | `1.625311 + 0.6608 * 7 = 6.2509` |
+| 7  | **4**         | `1.625311 + 0.6608 * 6 = 5.5901` |
+| 8  | **3**         | `1.625311 + 0.6608 * 4 = 4.2685` |
+| 9  | **3**         | `1.625311 + 0.6608 * 3 = 3.6077` |
+| 10 | **4**         | `1.625311 + 0.6608 * 3 = 3.6077` |
+
+## Analysis of Predictions
+1. The **predicted values are close** to the actual values, but there are some deviations.
+2. The **AR(1) model smooths fluctuations**, meaning it does not perfectly capture sharp jumps.
+3. The model **relies on past values** and does not incorporate external factors such as economic news, supply-demand shocks, or geopolitical events.
+
+## Conclusion
+This example demonstrates how an **AR(1) process** can be used to estimate **gold prices** based on historical values. The model assumes **a dependency on the previous day's price** and provides a reasonable estimate of future values.
+
 
 ### 4.2 MA proces - example
 
