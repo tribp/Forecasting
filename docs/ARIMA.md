@@ -35,7 +35,7 @@ This is the sum of the AR + MA part. The time series is stationary so no differe
 
 ### 2.1 ARIMA versions
 
-# Comparison of ARIMA, SARIMA and SARIMAX
+### Comparison of ARIMA, SARIMA and SARIMAX
 
 | Model      | Seasonal Component | Exogenous Variables | Use Case                                      |
 |------------|---------|----------------------|-----------------------------------------------|
@@ -45,7 +45,7 @@ This is the sum of the AR + MA part. The time series is stationary so no differe
 
 ### 2.2 ARIMA libraries
 
-# Comparison of ARIMA Libraries in Python
+### Comparison of ARIMA Libraries in Python
 
 | Library         | Pros                                                 | Cons                                                 |
 |-----------------|------------------------------------------------------|------------------------------------------------------|
