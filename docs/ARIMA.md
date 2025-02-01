@@ -100,11 +100,11 @@ A more inuitive explaination is that time series that exibit this behaviour are 
 
 ### 4.1 AR proces
 
-# AR(1) Process Example: Estimating Gold Prices
+#### AR(1) Process Example: Estimating Gold Prices
 
 We will use an **Autoregressive (AR) process with 1 lag (AR(1))** to estimate the gold price based on past values.
 
-## Given Data
+#### Given Data
 The real-world gold prices for 10 days:
 
 `(4, 6, 6, 8, 7, 6, 4, 3, 3, 4)`
@@ -121,7 +121,7 @@ where:
 - `P_(t-1)` is the **actual** gold price from the previous day.
 - `ε_t` is the **error term** (assumed to be small and ignored for simplicity).
 
-## Step-by-Step Predictions Using AR(1)
+#### Step-by-Step Predictions Using AR(1)
 
 | Day | Real Price (P_t) | Predicted Price (P̂_t) |
 |----|---------------|----------------------------------|
@@ -136,20 +136,20 @@ where:
 | 9  | **3**         | `1.625311 + 0.6608 * 3 = 3.6077` |
 | 10 | **4**         | `1.625311 + 0.6608 * 3 = 3.6077` |
 
-## Analysis of Predictions
+#### Analysis of Predictions
 1. The **predicted values are close** to the actual values, but there are some deviations.
 2. The **AR(1) model smooths fluctuations**, meaning it does not perfectly capture sharp jumps.
 3. The model **relies on past values** and does not incorporate external factors such as economic news, supply-demand shocks, or geopolitical events.
 
-## Conclusion
+#### Conclusion
 This example demonstrates how an **AR(1) process** can be used to estimate **gold prices** based on historical values. The model assumes **a dependency on the previous day's price** and provides a reasonable estimate of future values.
 
 
 ### 4.2 MA proces - example
 
-# Cloud Cover and Solar Energy
+#### Cloud Cover and Solar Energy
 
-## Given MA(1) Formula
+#### Given MA(1) Formula
 $S_t$ = μ + $ε_t$ + θ₁ $ε_{t-1}$
 
 where:  
@@ -161,27 +161,27 @@ where:
 
 ---
 
-## Day-by-Day Calculation
+### Day-by-Day Calculation
 
-### Day 1: A Sudden Thunderstorm
+#### Day 1: A Sudden Thunderstorm
 - $ε_1$ = -30% (unexpected severe cloud cover).  
 - No previous day effect ($ε_0$ = 0).  
 - **Formula:**  
   $S_1$ = 0 + (-30) + (0.5 × 0) = -30%
 
-### Day 2: Lingering Clouds
+#### Day 2: Lingering Clouds
 - $ε_2$ = -10% (still some unexpected clouds).  
 - Yesterday's impact: $ε_1$ = -30%.  
 - **Formula:**  
   $S_2$ = 0 + (-10) + (0.5 × -30) = -10 - 15 = -25%
 
-### Day 3: Clear Sky Returns
+#### Day 3: Clear Sky Returns
 - $ε_3$ = 0% (no unexpected clouds today).  
 - Yesterday's impact: $ε_2$ = -10%.  
 - **Formula:**  
   $S_3$ = 0 + 0 + (0.5 × -10) = -5%
 
-### Day 4: Normal Day
+#### Day 4: Normal Day
 - $ε_4$ = 0% (perfectly normal, expected sunlight).  
 - Yesterday's impact: $ε_3$ = 0%.  
 - **Formula:**  
@@ -189,7 +189,7 @@ where:
 
 ---
 
-## Final Solar Energy Deviations Over Time
+#### Final Solar Energy Deviations Over Time
 
 | Day | Unexpected Cloud Cover ($ε_t$) | Solar Output Deviation ($S_t$) |
 |-----|------------------------------|------------------------------|
