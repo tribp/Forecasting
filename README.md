@@ -27,6 +27,9 @@ Mini course on the forecasting ecosystem for Time Series
 
 ## 1. Statistical methods
 ### 1.1 Arima 
+
+Not familiar with ARIMA? Read [Arima theory](./docs/ARIMA.md)
+
 Predicting AirPassengers [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tribp/Forecasting/blob/main/notebooks/Arima_AirPassengers.ipynb)
 
 Predicting Electricity max daily load [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tribp/Forecasting/blob/main/notebooks/Arima_Elia_Daily_Max.ipynb)
