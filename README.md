@@ -40,6 +40,9 @@ Predicting Electricity max daily load [![Open in Colab](https://colab.research.g
 
 ## 3. Deep learning methods
 
+RNN basic mechanism tutorial [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tribp/Forecasting/blob/main/notebooks/tut_RNN_principle.ipynb)
+
+
 ### 3.3 NeuralForecast with NHITS
 
 Electricity Demand peak Belgium (Elia): 
